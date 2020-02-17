@@ -3,3 +3,5 @@ process.md
 steep
 project
 .*
+.idea/**/*
+.DS_Store/
