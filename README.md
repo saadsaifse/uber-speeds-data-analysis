@@ -66,3 +66,26 @@ export NODE_OPTIONS="--max_old_space_size=8192" && mdt speeds-transform historic
 
 Whereas the road safety accidents collision data is a single file that can be downloaded
 [here](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview)
+
+### Anatomy of Uber Speeds Data
+
+The hourly speeds dataset of Uber contains the following major columns
+
+* `utc_timestamp` - Date & time of observations in UTC format
+* `segment_id` - Special Ids assigned to road segments by Uber
+* `start_junction_id` - Junction where the segment starts i.e., a roundabout
+* `end_junction_id` - Junction where the segment ends
+* `speed_mph_mean` - Mean speed of vehicles within an hour
+* `speed_mph_stddev` - Standard deviation of speed of vehicles in an hour
+
+The above columns can uniquely identify a street segment and its speed. However, since the segments and junctions correspond to Uber's internal identification models. There also exists Open Street Map (OSM) Ids, that correspond to OSM Way Id and OSM Node Id respectively.
+
+OSM Way and Node Ids define roads and nodes connecting them. Uber has its own implementation of road structures because speeds can vary a lot within a single OSM Way Id. That is why multiple Segment Ids correspond to a single OSM Way Id. Fortunately, OSM Ids are also provided in the same table
+
+* `osm_way_id` - OSM Way Id with One to Many relationship with `segment_id`
+* `osm_start_node_id` - Start node Id of OSM corresponding to `start_junction_id`
+* `osm_end_node_id` - End node Id of OSM corresponding to `end_junction_id`
+
+For more information about Uber's speed data, checkout [this](https://medium.com/uber-movement/working-with-uber-movement-speeds-data-cc01d35937b3) article.
+
+Having said that, analysis as a Python Jupyter Notebook can be found [here](./src/fullAnalysis.ipynb) along with detailed documentation and discussion of results.
