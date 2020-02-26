@@ -104,6 +104,19 @@ For more information about Uber's speed data, checkout [this](https://medium.com
 
 Having said that, analysis as a Python Jupyter Notebook can be found [here](./src/fullAnalysis.ipynb) along with detailed documentation and discussion of results.
 
+### Anatomy of Collision Data
+
+Road safety accident data or collision data is downloaded above contains the statistics about road accidents in the London city. Below major columns exists in the dataset.
+
+* `Date` - Date and time of accident
+* `Longitude` - Longitude of accident location
+* `Latitude` - Latitude of accident location
+* `Accident_Severity` - Severity value of accident
+* `Number_of_casualties` - Number of casualties
+... among others
+
+Since this dataset does not contain direct `osm_way_id`s, a manual mapping has to be defined.
+
 ### Environment Setup and Usage
 
 This project uses Python3 with Jupyter Notebook. The easiest way to install both is using [Anaconda distribution](https://www.anaconda.com/distribution/). Once Anaconda is installed, make sure you have the following packages installed as the script depends upon these packages.
@@ -112,3 +125,6 @@ This project uses Python3 with Jupyter Notebook. The easiest way to install both
 * Pandas
 * Geopandas
 * Statsmodel
+* pmdarima
+
+After that, you can execute the `.ipynb` in the browser or install an editor such as VSCode with Python extension to execute the notebook.
