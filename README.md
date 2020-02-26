@@ -49,6 +49,12 @@ dataset is available for [2018](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9
 
 #### Downloading Datasets
 
+You will need three datasets
+
+1. Uber movement speeds data `.csv` files
+1. Road safety collision data for London 2018
+1. Open Street Map Geometries `.geojson` file of London 2018
+
 Uber provides a handy [Movement Data Toolkit](https://www.npmjs.com/package/movement-data-toolkit) that is used to download the `.csv` files
 for speeds dataset and is available as an `npm` and `Node.js` package.
 
@@ -66,6 +72,14 @@ export NODE_OPTIONS="--max_old_space_size=8192" && mdt speeds-transform historic
 
 Whereas the road safety accidents collision data is a single file that can be downloaded
 [here](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview)
+
+Download London 2018 geometries by using Movement Data Toolkit's command
+
+```bash
+mdt create-geometry-file London 2018 > london2018.geojson
+```
+
+The script assumes all data files to be inside `data/london2018/` folder at the root of the project. If you have a different folder, you can specify a different path in the Jupyter notebook.
 
 ### Anatomy of Uber Speeds Data
 
@@ -89,3 +103,12 @@ OSM Way and Node Ids define roads and nodes connecting them. Uber has its own im
 For more information about Uber's speed data, checkout [this](https://medium.com/uber-movement/working-with-uber-movement-speeds-data-cc01d35937b3) article.
 
 Having said that, analysis as a Python Jupyter Notebook can be found [here](./src/fullAnalysis.ipynb) along with detailed documentation and discussion of results.
+
+### Environment Setup and Usage
+
+This project uses Python3 with Jupyter Notebook. The easiest way to install both is using [Anaconda distribution](https://www.anaconda.com/distribution/). Once Anaconda is installed, make sure you have the following packages installed as the script depends upon these packages.
+
+* Numpy
+* Pandas
+* Geopandas
+* Statsmodel
